@@ -1,0 +1,46 @@
+<template>1
+  <lightning-card>
+    <div class="filter-container">
+      <lightning-input
+        class="search-input"
+        label="Filter by Account Name"
+        value={searchKey}
+        onchange={handleSearch}
+        type="search"
+        placeholder={labels.search_List}
+      >
+      </lightning-input>
+    </div>
+
+    <lightning-datatable
+      key-field="Id"
+      data={pagedAccounts}
+      columns={columns}
+      onsort={handleSort}
+      sorted-by={sortBy}
+      sorted-direction={sortDirection}
+      onsave={handleSave}
+      draft-values={saveDraftValues} 
+      show-row-number-column
+      hide-checkbox-column
+    >
+    </lightning-datatable>
+
+    <div class="pagination-container">
+      <lightning-button
+        label="Previous"
+        onclick={previousPage}
+        disabled={isFirstPage}
+        class="pagination-button"
+      ></lightning-button>
+      <lightning-button
+        label="Next"
+        onclick={nextPage}
+        disabled={isLastPage}
+        class="pagination-button"
+      ></lightning-button>
+    </div>
+
+    <p class="page-info">Page {pagination.currentPage} of {pagination.totalPages}</p>
+  </lightning-card>
+</template>

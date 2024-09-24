@@ -1,0 +1,33 @@
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 25%;
+  --sds-c-input-border-color: #5a67d8;
+  --sds-c-input-border-radius: 8px;
+  --sds-c-input-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  margin-right: 1rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+}
+
+.page-info {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+}
