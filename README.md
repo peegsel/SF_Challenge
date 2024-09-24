@@ -1,18 +1,12 @@
-# Salesforce DX Project: Next Steps
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Overview
+This repository contains the implementation of a Lightning Web Component (LWC) that meets the specifications outlined in the coding challenge. The main functionality of the component is to display a list of Account records filtered by the "Financial Services" industry and provides various features for sorting, filtering, and editing records.
 
-## How Do You Plan to Deploy Your Changes?
+## Functionality
+OWD for Account object - private.
+Running app by System Admin with access to edit:
+https://github.com/user-attachments/assets/8d534691-b3d7-4a1f-ac1b-62ba20d0aa1d
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Running app by Test User with access to only read and create records:
+https://github.com/user-attachments/assets/8cb0e8aa-be0e-4514-9795-8fe660137a93
 
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
