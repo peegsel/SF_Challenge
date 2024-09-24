@@ -5,8 +5,8 @@ This repository contains the implementation of a Lightning Web Component (LWC) t
 ## Functionality
 OWD for Account object - private.
 Running app by System Admin with access to edit:
-https://github.com/user-attachments/assets/8cb0e8aa-be0e-4514-9795-8fe660137a93
+https://github.com/user-attachments/assets/8d534691-b3d7-4a1f-ac1b-62ba20d0aa1d
 
 Running app by Test User with access to only read and create records:
-https://github.com/user-attachments/assets/8d534691-b3d7-4a1f-ac1b-62ba20d0aa1d
+https://github.com/user-attachments/assets/8cb0e8aa-be0e-4514-9795-8fe660137a93
 
