@@ -1,6 +1,5 @@
-import { LightningElement, wire } from "lwc";
-import getFinancialServiceAccounts from "@salesforce/apex/AccountController.getFinancialServiceAccounts";
-import isAccountEditable from "@salesforce/apex/AccountController.isAccountEditable";
+import { LightningElement, wire } from "lwc"; 
+import getAccountData from "@salesforce/apex/AccountController.getAccountData";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { refreshApex } from "@salesforce/apex";
 import { updateRecord } from "lightning/uiRecordApi";
@@ -26,6 +25,7 @@ const LABELS = {
   },
   search_List,
 };
+
 const COLUMNS = [
   {
     label: "Account Name",
@@ -68,36 +68,24 @@ export default class AccountListWithPagination extends LightningElement {
   labels = LABELS;
   columns = COLUMNS;
 
-  @wire(getFinancialServiceAccounts)
-  loadAccounts(result) {
+  @wire(getAccountData)
+  loadAccountData(result) {
     this.wiredAccountsResult = result;
     const { data, error } = result;
     if (data) {
-      this.accounts = data.map((acc) => ({
+      this.accounts = data.accounts.map((acc) => ({
         ...acc,
         OwnerName: acc.Owner?.Name || "",
         accountUrl: `/lightning/r/Account/${acc.Id}/view`,
       }));
       this.filteredAccounts = [...this.accounts];
+      this.isEditable = data.isEditable;
       this.updatePagination();
     } else if (error) {
       this.showToast(
         LABELS.error.title,
         error.body?.message || LABELS.error.message,
-        LABELS.error.variant,
-      );
-    }
-  }
-
-  @wire(isAccountEditable)
-  handleIsAccountEditable({ error, data }) {
-    if (data !== undefined) {
-      this.isEditable = data;
-    } else if (error) {
-      this.showToast(
-        LABELS.error.title,
-        error.body?.message,
-        LABELS.error.variant,
+        LABELS.error.variant
       );
     }
   }
@@ -105,7 +93,7 @@ export default class AccountListWithPagination extends LightningElement {
   updatePagination() {
     const totalRecords = this.filteredAccounts.length;
     this.pagination.totalPages = Math.ceil(
-      totalRecords / this.pagination.pageSize,
+      totalRecords / this.pagination.pageSize
     );
     this.pagedAccounts = this.getPageData();
   }
@@ -118,7 +106,7 @@ export default class AccountListWithPagination extends LightningElement {
   handleSearch({ target: { value } }) {
     this.searchKey = value.toLowerCase();
     this.filteredAccounts = this.accounts.filter(({ Name }) =>
-      Name.toLowerCase().includes(this.searchKey),
+      Name.toLowerCase().includes(this.searchKey)
     );
     this.pagination.currentPage = 1;
     this.updatePagination();
@@ -129,7 +117,7 @@ export default class AccountListWithPagination extends LightningElement {
       this.showToast(
         LABELS.error.title,
         "You don't have permission to edit this object.",
-        LABELS.error.variant,
+        LABELS.error.variant
       );
       return;
     }
@@ -142,11 +130,11 @@ export default class AccountListWithPagination extends LightningElement {
         this.showToast(
           LABELS.success.title,
           LABELS.success.message,
-          LABELS.success.variant,
+          LABELS.success.variant
         );
         this.filteredAccounts = this.filteredAccounts.map((account) => {
           const updatedDraft = draftValues.find(
-            (draft) => draft.Id === account.Id,
+            (draft) => draft.Id === account.Id
           );
           return updatedDraft ? { ...account, ...updatedDraft } : account;
         });
@@ -161,7 +149,7 @@ export default class AccountListWithPagination extends LightningElement {
         this.showToast(
           LABELS.error.title,
           error.body?.message || LABELS.error.message,
-          LABELS.error.variant,
+          LABELS.error.variant
         );
       });
   }
@@ -173,7 +161,7 @@ export default class AccountListWithPagination extends LightningElement {
         message,
         variant,
         mode: "dismissable",
-      }),
+      })
     );
   }
 
